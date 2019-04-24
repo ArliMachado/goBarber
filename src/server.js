@@ -3,8 +3,7 @@ const nunjucks = require('nunjucks')
 const path = require('path')
 
 class App {
-
-  constructor() {
+  constructor () {
     this.express = express()
     this.isDev = process.env.NODE_ENV !== 'production'
 
@@ -23,6 +22,7 @@ class App {
       express: this.express,
       autoescape: true
     })
+    this.express.use(express.static(path.resolve(__dirname, 'public')))
     this.express.set('view engine', 'njk')
   }
 
