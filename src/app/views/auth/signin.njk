@@ -2,8 +2,9 @@
 
 {% block body %}
   <form action="/signin" method="post">
-  <img src="/images/logo.svg" height="42" />
+    <img src="/images/logo.svg" height="42"/>
 
+    {% include "_partials/flash.njk" %}
     <input type="email" name="email" placeholder="Seu e-mail"/>
     <input type="password" name="password" placeholder="Senha Secreta"/>
 
@@ -11,6 +12,5 @@
 
     <a href="/signup">Criar conta grátis</a>
   </form>
-
 
 {% endblock %}
