@@ -18,6 +18,10 @@ class SessionController {
       return res.redirect('/')
     }
     req.session.user = user
+
+    if (user.provider) {
+      return res.redirect('/app/dashboardProvider')
+    }
     return res.redirect('/app/dashboard')
   }
 
