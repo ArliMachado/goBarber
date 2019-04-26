@@ -1,4 +1,5 @@
 const moment = require('moment')
+const { Op } = require('sequelize')
 const { User, Appointment } = require('../models')
 class DashboardController {
   async index (req, res) {
@@ -9,7 +10,15 @@ class DashboardController {
   async indexProvider (req, res) {
     const user = req.session.user
     const providers = await Appointment.findAll({
-      where: { provider_id: user.id }
+      where: {
+        provider_id: user.id,
+        date: {
+          [Op.between]: [
+            date.startOf('day').format(),
+            date.endOf('day').format()
+          ]
+        }
+      }
     })
 
     const clients = await Promise.all(
@@ -18,7 +27,6 @@ class DashboardController {
         console.log(`client: ${client.name}`)
 
         return {
-          date: moment(provider.date).format('D/M/YYYY'),
           hour: moment(provider.date).format('HH:mm'),
           avatar: client.avatar,
           name: client.name,
