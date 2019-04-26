@@ -1,6 +1,6 @@
 module.exports = (sequelize, Datatypes) => {
-  const Appointment = sequelize.define('Apointment', {
-    date: Datatypes.Date
+  const Appointment = sequelize.define('Appointment', {
+    date: Datatypes.DATE
   })
 
   Appointment.associate = models => {
