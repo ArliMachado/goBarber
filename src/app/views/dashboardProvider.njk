@@ -4,7 +4,7 @@
   <div class='content'>
     <strong>Olá,
       {{ user.name }}</strong>
-    <p>Agendamentos do dia:
+    <p>Agendamentos do dia: {{today}}
     </p>
 
     <ul class='providers'>
@@ -13,9 +13,6 @@
           <div style="width:70%">
             <img src='/files/{{ client.avatar }}'/>
             <strong>{{ client.name }}</strong>
-            <div style="display: block">
-              <small>{{ client.email }}</small>
-            </div>
           </div>
           <div style="width:30%">
             Horário:

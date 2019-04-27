@@ -9,13 +9,18 @@ class DashboardController {
   }
   async indexProvider (req, res) {
     const user = req.session.user
+    const today = moment().format('DD/MM/YYYY')
     const providers = await Appointment.findAll({
       where: {
         provider_id: user.id,
         date: {
           [Op.between]: [
-            date.startOf('day').format(),
-            date.endOf('day').format()
+            moment()
+              .startOf('day')
+              .format(),
+            moment()
+              .endOf('day')
+              .format()
           ]
         }
       }
@@ -36,7 +41,7 @@ class DashboardController {
     )
     console.log(clients)
 
-    return res.render('dashboardProvider', { clients })
+    return res.render('dashboardProvider', { clients, today })
   }
 }
 
